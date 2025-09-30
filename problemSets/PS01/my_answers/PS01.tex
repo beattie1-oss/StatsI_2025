@@ -32,6 +32,11 @@
 \usepackage{url}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{etoolbox}
+\makeatletter
+\preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
+\makeatother
+
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -62,35 +67,81 @@
 
 \title{Problem Set 1}
 \date{Due: October 9, 2025}
-\author{Applied Stats/Quant Methods 1}
+\author{Ellen Beattie}
 
 \begin{document}
 	\maketitle
 	
-	\section*{Instructions}
-	\begin{itemize}
-	\item Please show your work! You may lose points by simply writing in the answer. If the problem requires you to execute commands in \texttt{R}, please include the code you used to get your answers. Please also include the \texttt{.R} file that contains your code. If you are not sure if work needs to be shown for a particular problem, please ask.
-\item Your homework should be submitted electronically on GitHub.
-\item This problem set is due before 23:59 on Thursday October 9, 2025. No late assignments will be accepted.
-	\end{itemize}
-	
-	\vspace{1cm}
 	\section*{Question 1: Education}
 
 A school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:\\
-\vspace{.5cm}
+\vspace{.25cm}
 
-\lstinputlisting[language=R, firstline=36, lastline=36]{PS01.R}  
+\lstinputlisting[language=R, firstline=41, lastline=41]{PS01.R}  
 
-\vspace{1cm}
+\vspace{0.5cm} 
 
-\begin{enumerate}
-	\item Find a 90\% confidence interval for the average student IQ in the school.\\
+\noindent
+\subsection*{1.1: Finding a 90\% confidence interval for the average student IQ in school}
+\vspace*{0.3cm}
+
+\noindent
+Step 1: Start by finding the point estimate (in this case average) from the school sample. 
+\lstinputlisting[language=R, firstline=43, lastline=44]{PS01.R}\ 
+	\begin{verbatim}
+		[1] 98.44
+	\end{verbatim} 
+Step 2: Determine the variation in the sample (with standard deviation) and then the standard error.
+(REASONS/EXPLANATION TBF)
+\lstinputlisting[language=R, firstline=47, lastline=51]{PS01.R}\
+ 	\begin{verbatim}
+ 		[1] 13.09287
+ 		[1] 2.618575
+ 	\end{verbatim}
+Step 3/4: Find relevant t-value given the confidence level and degrees of freedom in test
+(REASONS/EXPLANATION TBF)
+\lstinputlisting[language=R, firstline=55, lastline=57]{PS01.R}\
+\begin{verbatim}
+	[1] 1.317836
+\end{verbatim}
+Step 5: Use values to generate a confidence interval around the mean that includes a margin of error 
+(REASONS/EXPLANATION TBF)
+\lstinputlisting[language=R, firstline=60, lastline=63]{PS01.R}\
+\begin{verbatim}
+	[1]  94.98915 101.89085
+\end{verbatim}
+The confidence interval for the average student IQ in school is [94.99,101.89]. Meaning based on assumptions of the central limit theorem if 100 cases were sampled 90{\%} of the average scores would lie in this range. 
+\noindent	
+\vspace*{1cm}
 	
-	\item Next, the school counselor was curious  whether  the average student IQ in her school is higher than the average IQ score (100) among all the schools in the country.\\ 
+\subsection*{1.2: Hypothesis test with $\alpha=0.05$ to determine whether the average student IQ in her school is higher than the average IQ score (100) among all the schools in the country}	
+Step 1: Assumptions about data [TBF] . Sample size relatively small $n < 30$. \\
+Step 2: Set up null and alternative hypothesis
+Null hypothesis is the school (sample) average IQ score $\bar{y}$ is less than or equal to the national (population) average 100 IQ score. Alterative hypothesis is the sample average is greater than the population average 100. 
+	\begin{equation}
+		H_0: \bar{y} \le 100 ; H_a: \bar{y} > 100
+	\end{equation} \\
 	
-	\noindent Using the same sample, conduct the appropriate hypothesis test with $\alpha=0.05$.
-\end{enumerate}
+Step 3: Calculate test statistic
+Given small sample uses t-test to calculate statistic.
+(more about THEORY TBF)
+\lstinputlisting[language=R, firstline=69, lastline=71]{PS01.R}\
+\begin{verbatim}
+	[1] -0.5957439
+\end{verbatim} 
+(to be filled what test score means) \\
+
+Step 4: Calculate p-value
+(tbf p-value is)
+\lstinputlisting[language=R, firstline=74, lastline=74]{PS01.R}\
+\begin{verbatim}
+	[1] 0.7215383
+\end{verbatim} \
+
+Step 5: Make conclusion
+Since $p \ge 0.05$  
+One-sided results
+No evidence to reject null (tbc)
 
 \newpage
 
@@ -110,21 +161,22 @@ A school counselor was curious about the average of IQ of the students in her sc
 \end{tabular}
 
 \vspace{.5cm}
-\noindent Explore the \texttt{expenditure} data set and import data into \texttt{R}.
-\vspace{.5cm}
-\lstinputlisting[language=R, firstline=54, lastline=54]{PS01.R}  
-\vspace{.5cm}
-\begin{itemize}
+\noindent
 
-\item
-Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3}? What are the correlations among them (you just need to describe the graph and the relationships among them)?
+\subsection*{2.0 Importing and Exploring the dataset \texttt{expenditure}.}
 \vspace{.5cm}
-\item
-Please plot the relationship between \emph{Y} and \emph{Region}? On average, which region has the highest per capita expenditure on housing assistance?
+\lstinputlisting[language=R, firstline=79, lastline=79]{PS01.R}  
 \vspace{.5cm}
-\item
-Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
-\end{itemize}
+
+
+\subsection*{2.1 Relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3} }
+
+\vspace{.5cm}
+
+\subsection*{2.2 Relationship between \emph{Y} and \emph{Region}.}
+\vspace{.5cm}
+
+\subsection*{2.3 Relationship between \emph{Y} and \emph{X1} then including variable Region}
 
 
 \end{document}
