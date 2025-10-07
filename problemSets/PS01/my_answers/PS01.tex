@@ -36,6 +36,8 @@
 \makeatletter
 \preto{\@verbatim}{\topsep=0pt \partopsep=0pt }
 \makeatother
+\usepackage{placeins}
+
 
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -77,7 +79,7 @@
 A school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:\\
 \vspace{.25cm}
 
-\lstinputlisting[language=R, firstline=41, lastline=41]{PS01.R}  
+\lstinputlisting[language=R, firstline=36, lastline=36]{PS01.R}  
 
 \vspace{0.5cm} 
 
@@ -86,62 +88,78 @@ A school counselor was curious about the average of IQ of the students in her sc
 \vspace*{0.3cm}
 
 \noindent
-Step 1: Start by finding the point estimate (in this case average) from the school sample. 
-\lstinputlisting[language=R, firstline=43, lastline=44]{PS01.R}\ 
+First step is to find the point estimate around which a confidence interval can be constructed.  We use this sample to incorporate a margin of error around our mean to estimate a range that we think likely a true population parameter would fall in 90\% of the time with repeated sampling 
+In this case, the point average is found as the mean of IQ scores. 
+	\begin{equation}
+	\bar{y} =(\sum_{i}^{n}y_i)/ n
+	\end{equation} 
+\lstinputlisting[language=R, firstline=41, lastline=42]{PS01.R}\ 
 	\begin{verbatim}
 		[1] 98.44
 	\end{verbatim} 
-Step 2: Determine the variation in the sample (with standard deviation) and then the standard error.
-(REASONS/EXPLANATION TBF)
-\lstinputlisting[language=R, firstline=47, lastline=51]{PS01.R}\
+
+Second step is to determine the standard error (i.e how different the population mean is likely to be from the sample given the variability and the sample size).
+	\begin{equation}
+	\hat{\sigma}_{\bar{y}} = \frac{S}{\sqrt{n}} = \frac{\sqrt{\frac{\sum (y_i - \bar{y})^2}{n-1}}}{\sqrt{n}}
+	\end{equation}
+\lstinputlisting[language=R, firstline=43, lastline=46]{PS01.R}\
  	\begin{verbatim}
- 		[1] 13.09287
  		[1] 2.618575
+ 		[1] 25
  	\end{verbatim}
-Step 3/4: Find relevant t-value given the confidence level and degrees of freedom in test
-(REASONS/EXPLANATION TBF)
-\lstinputlisting[language=R, firstline=55, lastline=57]{PS01.R}\
+
+Next is to find relevant t-score. Since $n<30$  use t-distribution as it accounts for smaller sample sizes. 
+Next find the t-score from the t-distribution by using the relevant tail probability and the degrees of freedom ($df$) . The tail probability is $\alpha/2$ (as two-tailed interval) where the $\alpha$ significance level is the area under the density function minus the tails i.e. 1 minus the wanted 0.9 confidence level  $\alpha/2 = ((1-0.9))/2 = 0.05$  and the $df=n-1=24$ 
+\lstinputlisting[language=R, firstline=48, lastline=50]{PS01.R}\
 \begin{verbatim}
-	[1] 1.317836
+	[1] 1.710882
 \end{verbatim}
-Step 5: Use values to generate a confidence interval around the mean that includes a margin of error 
-(REASONS/EXPLANATION TBF)
-\lstinputlisting[language=R, firstline=60, lastline=63]{PS01.R}\
+
+Finally bringing all the elements together to calculate the lower and upper limits of the interval
+\begin{equation}
+	\hat{y} \pm = (t_{0.05,24} * \hat{\sigma}_{\bar{y}}) 
+\end{equation}
+
+\lstinputlisting[language=R, firstline=52, lastline=55]{PS01.R}\
 \begin{verbatim}
-	[1]  94.98915 101.89085
+	[1]  93.96 102.92
 \end{verbatim}
-The confidence interval for the average student IQ in school is [94.99,101.89]. Meaning based on assumptions of the central limit theorem if 100 cases were sampled 90{\%} of the average scores would lie in this range. 
+The confidence interval for the average student IQ in school is [93.96,102.92]. 
+If we were to conduct repeated sampling IQ scores, we would find that 90\% of the time our interval would contain the true parameter of average population IQ scores. 
 \noindent	
 \vspace*{1cm}
 	
 \subsection*{1.2: Hypothesis test with $\alpha=0.05$ to determine whether the average student IQ in her school is higher than the average IQ score (100) among all the schools in the country}	
-Step 1: Assumptions about data [TBF] . Sample size relatively small $n < 30$. \\
-Step 2: Set up null and alternative hypothesis
-Null hypothesis is the school (sample) average IQ score $\bar{y}$ is less than or equal to the national (population) average 100 IQ score. Alterative hypothesis is the sample average is greater than the population average 100. 
+Step 1: The first stage when conducting a significant test to is evaluate the assumptions we are working under when testing. This case includes scored data, from a relatively small random sample ($n < 30$) and the scores follow a roughly normal  distribution. 
+Step 2: To determine whether her school average IQ score is higher than the population average we prove by contradiction.  We construct a null hypothesis – That the sample average is less than or equal to the population – and attempt to disprove it. If we are able to find sufficient evidence to prove the null is statistically very unlikely, we are able to reject it and accept the alternative – That the school average IQ is greater than the average IQ scores in the country. Given we are testing a directional statement (‘greater than’) and that the population average ($\mu$) is stated to be 100, our hypothesis to test is: 
 	\begin{equation}
-		H_0: \bar{y} \le 100 ; H_a: \bar{y} > 100
+		H_0: \mu \ge \bar{y}     
+		H_a: \mu < \bar{y} 
 	\end{equation} \\
 	
-Step 3: Calculate test statistic
-Given small sample uses t-test to calculate statistic.
-(more about THEORY TBF)
-\lstinputlisting[language=R, firstline=69, lastline=71]{PS01.R}\
+Step 3-4: Calculate test statistic
+ Next we find our relevant test statistic i.e. the distance between the estimate and the parameter value in the null hypothesis. For this we use a t-test as our sample size is small $n=25<30$. 
+From this $p-value$ is the probability that the test statistic equals or is even more extreme than the alternative hypothesis. For this one-tailed test this is the probability of the test-statistic is in the rejection region beyond the critical value at the lower tail test [to be finished]
+[p-values]
+\lstinputlisting[language=R, firstline=59, lastline=59]{PS01.R}\
 \begin{verbatim}
-	[1] -0.5957439
+		One Sample t-test
+	
+	data:  y
+	t = -0.59574, df = 24, p-value = 0.2785
+	alternative hypothesis: true mean is less than 100
+	95 percent confidence interval:
+	-Inf 102.9201
+	sample estimates:
+	mean of x 
+	98.44 
 \end{verbatim} 
-(to be filled what test score means) \\
 
-Step 4: Calculate p-value
-(tbf p-value is)
-\lstinputlisting[language=R, firstline=74, lastline=74]{PS01.R}\
-\begin{verbatim}
-	[1] 0.7215383
-\end{verbatim} \
 
-Step 5: Make conclusion
-Since $p \ge 0.05$  
-One-sided results
-No evidence to reject null (tbc)
+[report results]
+Step 5: Conclusion - The p-value is significantly higher than the $\alpha=0.05$ level and therefore the test statistic is likely to occur, given the assumption that the null hypothesis (the mean being less than or equal to 100) is true. Therefore there is not sufficient evidence to reject $H_0$ which means the claim that the alternative – the school average IQ score is higher than country’s  -  is not evidentially favoured. 
+Intuitively, given that the sample mean was lower than the population mean this would have been surprising. 
+
 
 \newpage
 
@@ -165,18 +183,109 @@ No evidence to reject null (tbc)
 
 \subsection*{2.0 Importing and Exploring the dataset \texttt{expenditure}.}
 \vspace{.5cm}
-\lstinputlisting[language=R, firstline=79, lastline=79]{PS01.R}  
+
+\lstinputlisting[language=R, firstline=75, lastline=75]{PS01.R} 
+
+\begin{table}[!htbp] \centering 
+	\caption{} 
+	\label{} 
+	\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+		\\[-1.8ex]\hline 
+		\hline \\[-1.8ex] 
+		Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
+		\hline \\[-1.8ex] 
+		Y & 50 & 79.540 & 18.507 & 42 & 129 \\ 
+		X1 & 50 & 1,911.900 & 400.348 & 1,053 & 2,817 \\ 
+		X2 & 50 & 281.780 & 118.193 & 111 & 531 \\ 
+		X3 & 50 & 561.720 & 145.037 & 326 & 899 \\ 
+		Region & 50 & 2.660 & 1.062 & 1 & 4 \\ 
+		\hline \\[-1.8ex] 
+	\end{tabular} 
+\end{table}  
+
 \vspace{.5cm}
 
 
 \subsection*{2.1 Relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3} }
 
+Plotting the relationships between each pair of variables in the data set, allows exploration of the different associations and patterns of the variation of the explanatory variables with the outcome variable (i.e Y with X1-3) and the explanatory variables with each other. 
+\lstinputlisting[language=R, firstline=80, lastline=86]{PS01.R}\
+
+\begin{figure}[!htbp]\centering
+	\caption{\footnotesize Relationships between US state housing expenditure variables}
+	\label{fig:plot_1}
+	\includegraphics[width=.6\textwidth]{2.1 Relationships between housing expenditure variables.pdf}
+\end{figure}
+\FloatBarrier
+
+\noindent
+\textbf{Density plots:} at first glance the density plots of each continuous variable can be seen in the diagonal of the plot matrix. This shows that Y (state expenditure on housing assistance) appears to have a relatively normal distribution. X1 (income pc) is a slightly disjointed bell curve, where X2 (numbers of financially insecure) and X3 (number of urban state residents) both appear bimodal. \\
+
+\noindent
+\textbf{Outcome variable Y and predictor variables X's}: By looking at the bottom row of the matrix we can see the relevant plots
+\begin{itemize}
+	\item \textbf{Y and X1: } Plot shows a positive correlation between (Y) per capita expenditure on shelters/housing assistance in state and  per capita personal income in state (X1), that is variation like an increase in Y and is associated with an increase in X1. The pattern is relatively loose with a few outliers, especially at the highest levels of income per capita.
+	\item \textbf{Y and X2: } plot appears to show that higher levels of residents being “financially insecure” also positively correlates with higher levels of  per capita state expenditure on shelters/housing assistance. The association looks to be less linear and more loosely related. There seems to be a large amount of bunched values at around the 150-200 per 100,000 range of  "financially insecure" residents in state.  
+	\item \textbf{Y and X3: } plot similarly shows a positive correlation between the number of people per thousand residing in urban areas in state and the per capita expenditure on housing assistance. The association is relatively linear with greater levels of variation at the upper end of values in X3. Generally, it seems that states with high level of urban residency have greater expenditure per capita  spending on state assisted housing/shelters.
+	\item Overall high levels of state expenditure for housing assistance per capita is associated with higher state personal income per capita, rates of residents with financial insecurity and more urban-dense state demographics. 
+\end{itemize}
+
+\noindent
+\textbf{Relationship between predictor variables}: shown in the 3 plots in the middle rows of the matrix
+
+\begin{itemize}
+	\item \textbf{X1 and X2: } There does not appear to be a clear correlation between the per capita personal income and rate of residents identified as "financially insecure". There appears to be a gap and between low and high values of X2 that does not variate with the level of personal income pc in state. The split in the data indicates the if there is a correlation it is be non-linear and needs further investigation. 
+	\item \textbf{X1 and X3:  }it appears a positive correlation between state per capita personal income (X1) and the rate of residents in urban areas (X3) meaning that states with higher levels of personal income per capita are associated with higher levels of urban residency. The relationship is fairly tight except for two notable outliers , one in the middle of the X1 variable with higher observed level of urban residency that predicted and one at the top end of personal income with one of the lowest rates of urban residency. 
+	\item \textbf{X2 and X3: } there does not appear to be a correlation between the rate of "financially insecure" residents and rate of urban residents. The spread of points very loose and does not show a linear relationship between the two variables. There appears to be a large amount of states with the same level of "financial insecure" residents (at around 150 residents per 100,000) that have a wide range of rate of urban residents, giving evidence that there is not a clear variance relationship with them. 
+	\item This correlation  is important to consider in their relationship with state housing assistance expenditure and it may mean there is a confounding variable impacting both of the predictor variables and their association with the outcome. 
+\end{itemize}
+
 \vspace{.5cm}
 
 \subsection*{2.2 Relationship between \emph{Y} and \emph{Region}.}
 \vspace{.5cm}
+A boxplot is a good way to explore the relationship between state expenditure on housing assistance per capita by region as it allows easy side-by-side comparisons of the range, interquartile range and mean of each regional category. 
 
+\lstinputlisting[language=R, firstline=92, lastline=102]{PS01.R}\
+
+\begin{figure}[!htbp]\centering
+	\caption{\footnotesize US region and in state per capita expenditure on housing assistance}
+	\label{fig:plot_2}
+	\includegraphics[width=.7\textwidth]{2.2 State Housing Expenditure by Region Boxplot.pdf}
+\end{figure}
+\FloatBarrier
+
+The boxplot shows that states in the West of the US have the largest range of expenditure on housing including states with the highest and the lowest expenditure per capita respectively. Southern states seem to have on average the lowest expenditure  (lowest IQR and mean) whilst West despite the variability on average has the highest expenditure. North central looks to have the second highest average expenditure and with much less variation within values (with a small box IQR) but does have a few outliers. Northeast region is third highest.  
+To confirm, the average expenditure of each region is found and displayed below. This confirms the West has the greatest on average expenditure on housing assistance per capita with a average value of 88.31.
+  
+\lstinputlisting[language=R, firstline=105, lastline=109]{PS01.R}\
+\begin{verbatim}
+	         Region        x
+	1     Northeast 79.44444
+	2 North Central 83.91667
+	3         South 69.18750
+	4          West 88.30769
+\end{verbatim}
+
+\newpage
 \subsection*{2.3 Relationship between \emph{Y} and \emph{X1} then including variable Region}
 
+\begin{figure}[!htbp]\centering
+	\caption{\footnotesize Relationship between per capita personal income and  expenditure on housing assistance in US states}
+	\label{fig:plot_3}
+	\includegraphics[width=0.9\textwidth]{2.3 Combined plot.pdf}
+\end{figure}
+\FloatBarrier 
+\lstinputlisting[language=R, firstline=112, lastline=127]{PS01.R}\
+\vspace*{0.5cm}\\
 
+The left plot in Figure 3 focuses only on the association between Y and X1 (personal income per capita) as seen in explored in question 1.
+In more detail, the positive correlation between state expenditure and personal income is seen. The relationship is clearly relatively loose with many observations different from the value the smoothed linear relationship would expect. 
+Generally, a trend of increasing personal income and housing assistance can be observed. A few outliers are also highlighted in particular the lowest Y observation having a much larger X1 per capita personal income in state than would be predicted by the linear trend. 
+
+The right side of Figure 3, repeats this plot but incorporates Region by showing each point as a regional specific shape/colour combination (as shown in the legend). 
+This allows us to see that there is some level of grouping of expenditure/income values by region. 
+There is a collection at the low values of housing expenditure and personal income in state of states in the South of the USA.  There is a grouping of North Central states around the middle of the graph relatively close together. It is clear in this case to see the variation of states in the West with the highest and lowest value in housing  expenditure but also the greatest number of points that exceed the general trending line on exceeding expenditure on housing than the national trend given the per capita personal income in state. 
+
+\input{ttest_output.tex}
 \end{document}

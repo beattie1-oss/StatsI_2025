@@ -115,6 +115,7 @@ upper_95_n
 
 # How to calculate 99% confidence intervals?
 # When to use normal distribution and when to use t distribution?
+# 
 
 # The **precise** solution, using t distribution
 t_score <- qt(0.995, df=length(df$income)-1)
@@ -176,9 +177,9 @@ boxplot(df$income ~ df$cap,
 # How does our sample compare to the population, 
 # being the working population in Ireland?
 
-t.test(df$income, mu = 3034)
+t.test(df$income, mu = 3034) 
 ?t.test
-t.test(df$income, mu = 3034, alternative = "less")
+t.test(df$income, mu = 3034, alternative = "less") # one sided t-test
 
 # We also found a much easier way to calculate the confidence intervals (!)
 t.test(df$income, conf.level = 0.99, alternative = "two.sided")
@@ -208,6 +209,7 @@ mean(df[df$cap==0, ]$income) # Calculate mean
 # t-test
 t.test(df$income ~ df$cap, alternative = "two.sided")
 ?t.test
+#infer now association not random and those in capital earn more than those without
 
 # On average, do people earn more in the capital
 # compared to people who do not reside in the capital?

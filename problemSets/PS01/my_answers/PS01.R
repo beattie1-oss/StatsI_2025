@@ -24,147 +24,107 @@ pkgTest <- function(pkg){
 }
 
 # here is where you load any necessary packages
-install.packages("tidyverse")
-library(tidyverse)
-# ex: stringr
-# lapply(c("stringr"),  pkgTest)
-
-lapply(c(),  pkgTest)
-
+lapply(c("ggplot2", "stargazer", "GGally", "tidyverse", "ggpubr", "gridExtra", "tidyr", "plyr", "broom"),  pkgTest)
 ##setting working directions
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 
 #####################
 # Question 1: Education
 #####################
 
 y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
-#Step 1 finding point average mean
-sample_mean <- mean(y)
-sample_mean
-#finding key point estimate to construct interval around
-#Step 2 Finding standard deviation and standard error
-n <- length(y)
-sample_sd <- sd(y)
-sample_sd
-standard_error_y <- (sample_sd / sqrt(n))
-standard_error_y
-#number observations, and variation stats  determined
 
-# Find critical t value (probability 90 and df = n-1)
-df <- n - 1
-t90 <- qt(.90, 24)
-t90
 
-# Find upper and lower limits of CI, mean +/- margin of error
-lower_90 <- sample_mean - (t90 * standard_error_y)
-upper_90 <- sample_mean + (t90 * standard_error_y)
-confint_90 <- c(lower_90, upper_90)
-confint_90
+#Finding confidence intervals ## 
+
+mean_y <- mean(y) #Find Point Estimate
+mean_y
+se_y <- sd(y) / sqrt(length(y)) #Standard error, where n found by length of y
+se_y 
+n <- length(y) #Sample size
+n
+
+tscore_90 <- qt(0.05, 24, lower.tail = FALSE) #Find t-score
+    # where p is ((1-.90)/2) = 0.05, df = n - 1 = 24
+tscore_90
+
+lower_90_t <- mean_y - (tscore_90 * se_y) # Lower limit of CI: Mean - Margin Error
+upper_90_t <- mean_y + (tscore_90 * se_y)  # Upper limit of CI: Mean + Margin Error
+confint_90 <- c(lower_90_t, upper_90_t) #Final Interval
+round(confint_90, 2)
 
 ## 1.2 Hypothesis test whether her school average IQ higher than population average ##
-# Null hypothesis sample y mean is less than or equal to population mean 100
-# Alternative hypothesis sample mean is greater than population average of 100
-# Create test-statistic
-pop_mean <- 100
-ts <- (sample_mean - pop_mean) / standard_error_y
-ts
 
-# P value
-pt(ts, df, lower.tail = FALSE)
+t.test(y, mu = 100, alternative = "greater") 
 
-#####################
+
+
+
+
+############################
 # Question 2: Political economy
 #####################
 
 expenditure <- read.table("https://raw.githubusercontent.com/ASDS-TCD/StatsI_2025/main/datasets/expenditure.txt", header=T)
-## 2.0 Explore and Import Data into R 
-#colnames(expenditure) <- c("state", "exp_housing_pc", "income_pc", "n_financially_insecure", "n_urban", "region")
-# naming columns something more relevant
-dim(expenditure)
-summary(expenditure)
+
+## 2.0 Exploring Data ##
+
+expenditure
+dim(expenditure) 
+stargazer(expenditure)
+
+
+## 2.1 Plot relationships Y, X1, X2, X3 ##
+
+pdf("2.1 Relationships between housing expenditure variables.pdf")
+ggpairs(expenditure, 
+        columns = c(3,4,5,2), 
+        mapping = aes(alpha = 0.5),
+        lower = list(continuous= "smooth"),
+        title = "Relationships between housing expenditure variables")
+dev.off()
 
 
 
-## 2.1 PLot relationships between Y, X1, X2, X3
-# Y and X1 
-ggplot(expenditure, aes(x = X1, y = Y)) +
-  geom_point() +
-  geom_smooth(method = lm) +
-  labs(
-    title = "State expenditure on shelters/housing and personal income per capita",
-    x = "Personal income per capita ($)",
-    y = "Expenditure on housing assistance per capita ($)"
-  )
+## 2.2 Plot relationship Y and Region ##
 
-# Y and X2
-ggplot(expenditure, aes(x = X2, y = Y)) +
-  geom_point() +
-  geom_smooth(method = lm) +
-  labs(
-    title = "State expenditure on shelters/housing and number of 'financially insecure' residents  ",
-    x = " Number of residents per 100,000 that are ”financially insecure” in state",
-    y = "Expenditure on housing assistance per capita ($)"
-  )
-
-#Y and X3
-# Y and X2
-ggplot(expenditure, aes(x = X3, y = Y)) +
-  geom_point() +
-  geom_smooth(method = lm) +
-  labs(
-    title = "State expenditure on shelters/housing and number of urban residents ",
-    x = " Number of people per thousand residing in urban areas in state",
-    y = "Expenditure on housing assistance per capita ($)"
-  )
-
-# X1, X2, X3
-ggplot(expenditure, aes(x = X1, y = X2)) +
-  geom_point() +
-  geom_smooth(method = lm)
-
-ggplot(expenditure, aes(x = X1, y = X3)) +
-  geom_point() +
-  geom_smooth(method = lm)
-
-ggplot(expenditure, aes(x = X2, y = X3)) +
-  geom_point() +
-  geom_smooth(method = lm)
-
-## 2.2 Plot relationship Y and Region
 expenditure$Region_name <- factor(expenditure$Region,
-                             levels = c(1, 2, 3, 4),
-                             labels = c("Northeast", "North Central", "South", "West"))
+                            labels = c("Northeast", "North Central", "South", "West")) 
 # Create new factor variable into Categories from encoding in data frame
 
-ggplot(expenditure, aes(x = Region_name, y = Y)) +
-  geom_boxplot()
+pdf("2.2 State Housing Expenditure by Region Boxplot.pdf")
+ggplot(expenditure, aes(x = Region_name, y = Y, fill = Region_name)) + #fill colour by region category
+  stat_boxplot(geom ='errorbar') + #to add whiskers
+  geom_boxplot() +
+  labs(x = "Region", y = "Per capita expenditure on housing assistance in state") +
+  ggtitle("US region and in state per capita expenditure on housing assistance")
+dev.off()
+
+#Finding regional averages 
 mean_by_region <- aggregate(expenditure$Y,
                             by = list(Region = expenditure$Region_name),
                             FUN = mean,
-                            )
-mean_by_region
+                            ) #find summary stats for subset Y and region with function mean
+mean_by_region #Print region averages
 
-
-## 2.3 Plot relationship Y and X1, then including region
-ggplot(expenditure)
-ggplot(expenditure, aes(x = X1, y = Y)) +
+## 2.3 Plot relationship Y and X1, then including region ##
+plot1 <- ggplot(expenditure, aes(x = X1, y = Y)) + #using only X1
   geom_point() +
   geom_smooth(method = lm) +
-  labs(
-    title = "State expenditure on shelters/housing and personal income per capita",
-    x = "Personal income per capita ($)",
-    y = "Expenditure on housing assistance per capita ($)"
-  )
+  labs(x = "Per capita personal income in state", y = "Expenditure on housing assistance per capita in state") +
+  theme(legend.position = "bottom") 
 
-#Including symbols and colours
-ggplot(expenditure, aes(x = X1, y = Y)) +
-  geom_point(mapping = aes(color = Region_name, shape = Region_name)) +
+  plot2 <- ggplot(expenditure, aes(x = X1, y = Y)) +
+  geom_point(mapping = aes(color = Region_name, shape = Region_name)) + #distinguish region by mapping points differently
+  scale_shape_manual(values=c(15, 19, 6, 17)) + #specify different looking shapes
   geom_smooth(method = lm) +
-  labs(
-    title = "State expenditure on shelters/housing and personal income per capita",
-    x = "Personal income per capita ($)",
-    y = "Expenditure on housing assistance per capita ($)"
-  ) +
+  labs(x = "Per capita personal income in state", y = "Expenditure on housing assistance per capita in state") +
+  theme(legend.position = "bottom")
 
-  
+  plotcom <-  grid.arrange(plot1, plot2, ncol = 2)
+ggsave(filename="2.3 Combined plot.pdf", plot= plotcom , width=10, height=6, units="in")
+dev.off()
+
+
+

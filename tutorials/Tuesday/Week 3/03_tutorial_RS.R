@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/redmondscales/Documents/Applied Stats/GitHub/StatsI_2025")
+setwd("/Users/ellen/Documents/GitHub/StatsI_2025/tutorials/Tuesday/Week 3")
 getwd()
 
 # Agenda
@@ -18,7 +18,7 @@ getwd()
 # Is there a relationship between education and income?
 
 # Load data 
-
+ds <- read.csv("fictional_data.csv")
 
 # Selection of variables
 # Education: University level education in years
@@ -28,22 +28,34 @@ getwd()
 ### (a.) Descriptive analysis ----------
 
 # First step, look at data
-
+View(ds)
+head(ds)
+str(ds) #structure
 
 
 # Step by step
+mean(ds$income)
+var(ds$income)
+sd(ds$income)
+sd(ds$income)/sqrt(length(ds$income)) #Standard error
 
 # Get summary statistics for entire dataset
 
 
 # Some quick visualizations, to look at distribution
-
+hist(ds$income,
+     main = "monthly income",
+     xlab = "Euro")
+plot(density(ds$income,
+             main = "monthly income",
+             xlab = "Euro"))
 
 
 
 # Which kind of inferences can we make with regards to the population,
 # based on the sample data?
 
+mean(ds$income) # sample mean estimate for population mean
 
 # Standard **error** (Sample standard deviation adjusted by sample size)
 # is estimate for standard deviation of the sampling distribution
@@ -66,22 +78,34 @@ getwd()
 # The **approximate** solution 
 # Lower bound, 95 confidence level
 
+upper_95 = mean(ds$income) + (1.96*sd(ds$income)/sqrt(length(ds$income)))
+lower_95 = mean(ds$income) - (1.96*sd(ds$income)/sqrt(length(ds$income)))
 
 # Print
-
+lower_95
+mean(ds$income)
+upper_95
+#95% mean population falls between upper and lower bounds
 
 # The **precise** solution, using normal distribution
 # Lower bound, 95 confidence level
 
+lower_95_n <- qnorm(0.025, 
+                    mean = mean(ds$income), 
+                    sd = (sd(ds$income)/sqrt(length(ds$income))))
 
 # Upper bound, 95 confidence level
+upper_95_n <- qnorm(0.975,
+                    mean = mean(ds$income),
+                    sd = (sd(ds$incom)/sqrt(length(ds$income))))
 
 # Step by step
 
 
 # Print
-
-
+lower_95_n
+mean(ds$income)
+upper_95_n
 # How to calculate 99% confidence intervals?
 # When to use normal distribution and when to use t distribution?
 
