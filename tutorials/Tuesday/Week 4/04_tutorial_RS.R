@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/redmondscales/Documents/Applied Stats/GitHub")
+setwd("/Users/ellen/Documents/GitHub/StatsI_2025")
 getwd()
 
 # Agenda
@@ -15,7 +15,7 @@ getwd()
 # (d.) Bivariate regression 
 
 # Load data 
-df_not_tidy <- read.csv("datasets/movies.csv")
+df_not_tidy <- read.csv("movies.csv")
 
 # First step, look at data
 View(df_not_tidy)
@@ -30,36 +30,47 @@ summary(df_not_tidy)
 
 # Load tidy version of data
 # The data is prepared using the data_wraning.R script.
+df <- readRDS("datasets/movies.rds")
 
 # First step, look at data
 
 
 # Contingency table 
-
+table(df$genre, #Genre
+      df$critics_rating) # Rating
 
 # Subset data, only consider Comedy, Documentary, Drama
 
 # Option 1: 
 # Dataframe subsetting: df[rows, columns]
 
+df_s <- df[df$genre == "Comedy" |
+             df$genre == "Drama" |
+             df$genre == "Documentary", ] #
+df_s
 # Step by step
+
+df$genre #Select column
 
 
 # Option 2: Tidyverse subset
 
 # Install and load tidyverse
 # Adopted from: https://stackoverflow.com/questions/4090169/elegant-way-to-check-for-missing-packages-and-install-them
-
-
-
+library(tidyverse)
+df_s <- subset(df, df$genre %in% c("Comedy", "Drama", "Documentary")
+view(df_s)
 # Step by step
 
 # Contingency table 
+
+
 
 # Problem: Although we filtered our data 
 # the underlying levels still exist. Getting rid of
 # these, we use the droplevels-function.
 
+class(df_s$genre)
 
 # Contingency table 
 

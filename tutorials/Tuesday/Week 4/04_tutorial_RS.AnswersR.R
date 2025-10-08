@@ -5,7 +5,7 @@
 getwd()
 
 # Set working directory 
-setwd("/Users/redmondscales/Documents/Applied Stats/GitHub")
+setwd("/Users/ellen/Documents/GitHub/StatsI_2025")
 getwd()
 
 # Agenda
@@ -179,11 +179,14 @@ chisq.test(df_s$genre,
 
 # Check p-value
 sprintf("%.20f",1.097e-12)
+#
 
 # Step 2: Hypotheses
 # Step 3: Test statistic
 # Step 4: P-value
+# Very small p-value +> reject null hypothesis that genre and critic rating are intependent
 # Step 5: Conclusion
+# Movie genre impacts critical rating => they are not statistically independent
 
 # A little side note, look at residuals
 chi <- chisq.test(df_s$genre, 
@@ -191,6 +194,7 @@ chi <- chisq.test(df_s$genre,
 # Returns the Pearson residuals, (observed - expected) / sqrt(expected)
 ?chisq.test 
 chi$residuals
+#There is some residuals => different between observed and expected
 
 # (c.) Correlation -----
 
@@ -220,7 +224,7 @@ legend(1000, 8, # x and y position of legend
 dev.off()
 
 # Calculate correlation
-cor(df$income,df$edu)
+cor(df$income,df$edu) # 0.88 
 
 # Add to scatter plot
 plot(df$income,df$edu)

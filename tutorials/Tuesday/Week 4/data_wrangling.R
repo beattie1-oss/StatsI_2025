@@ -18,7 +18,7 @@ if(!require(lubridate)){
 getwd()
 
 # Set working directory 
-setwd("/Users/redmondscales/Documents/Applied Stats/GitHub")
+setwd("/Users/ellen/Documents/GitHub/StatsI_2025")
 getwd()
 
 # Import movies.csv

@@ -56,10 +56,10 @@ round(confint_90, 2)
 
 ## 1.2 Hypothesis test whether her school average IQ higher than population average ##
 
-t.test(y, mu = 100, alternative = "greater") 
-
-
-
+test_stat <- (mean_y - 100)/ se_y # sample mean minus population mean divide by standard error
+test_stat
+p <- pt(test_stat, 24, lower.tail = FALSE) #prob of t-dis of getting test stat, df = n-1 = 24, lower tail false as looking at right side
+p
 
 
 ############################
@@ -74,20 +74,16 @@ expenditure
 dim(expenditure) 
 stargazer(expenditure)
 
-
 ## 2.1 Plot relationships Y, X1, X2, X3 ##
 
 pdf("2.1 Relationships between housing expenditure variables.pdf")
 ggpairs(expenditure, 
         columns = c(3,4,5,2), 
-        mapping = aes(alpha = 0.5),
-        lower = list(continuous= "smooth"),
+        mapping = aes(alpha = 0.7),
         title = "Relationships between housing expenditure variables")
 dev.off()
 
-
-
-## 2.2 Plot relationship Y and Region ##
+ ## 2.2 Plot relationship Y and Region ##
 
 expenditure$Region_name <- factor(expenditure$Region,
                             labels = c("Northeast", "North Central", "South", "West")) 
@@ -98,7 +94,6 @@ ggplot(expenditure, aes(x = Region_name, y = Y, fill = Region_name)) + #fill col
   stat_boxplot(geom ='errorbar') + #to add whiskers
   geom_boxplot() +
   labs(x = "Region", y = "Per capita expenditure on housing assistance in state") +
-  ggtitle("US region and in state per capita expenditure on housing assistance")
 dev.off()
 
 #Finding regional averages 
@@ -111,20 +106,22 @@ mean_by_region #Print region averages
 ## 2.3 Plot relationship Y and X1, then including region ##
 plot1 <- ggplot(expenditure, aes(x = X1, y = Y)) + #using only X1
   geom_point() +
-  geom_smooth(method = lm) +
-  labs(x = "Per capita personal income in state", y = "Expenditure on housing assistance per capita in state") +
-  theme(legend.position = "bottom") 
-
-  plot2 <- ggplot(expenditure, aes(x = X1, y = Y)) +
+  labs(x = "Personal income pc",
+       y = "Expenditure on housing assistance pc", 
+       title = "Relationship betweeen Y and X1")
+plot2 <- ggplot(expenditure, aes(x = X1, y =Y)) +
   geom_point(mapping = aes(color = Region_name, shape = Region_name)) + #distinguish region by mapping points differently
-  scale_shape_manual(values=c(15, 19, 6, 17)) + #specify different looking shapes
-  geom_smooth(method = lm) +
-  labs(x = "Per capita personal income in state", y = "Expenditure on housing assistance per capita in state") +
-  theme(legend.position = "bottom")
-
-  plotcom <-  grid.arrange(plot1, plot2, ncol = 2)
-ggsave(filename="2.3 Combined plot.pdf", plot= plotcom , width=10, height=6, units="in")
+  scale_shape_manual(values=c(15, 19, 6, 17)) + #specify different looking shapes 
+  labs(x = "Personal income pc", 
+       y = "Expenditure on housing assistance pc", 
+       title = "Relationship betweeen Y and X1 by Region") +
+  theme(legend.position = c(.1,.95), #legend location
+        legend.justification = c("left", "top"),
+        legend.box.just = "left",
+        legend.margin = margin(6, 6, 6, 6)) 
+plotcom <-  grid.arrange(plot1, plot2, ncol = 2)
+ggsave(filename="2.3 Combined plot.pdf", plot= plotcom , width=10, height=6, units="in") #combining together
 dev.off()
 
 
-
+      
