@@ -119,7 +119,7 @@ plot2 <- ggplot(expenditure, aes(x = X1, y =Y)) +
         legend.justification = c("left", "top"),
         legend.box.just = "left",
         legend.margin = margin(6, 6, 6, 6)) 
-plotcom <-  grid.arrange(plot1, plot2, ncol = 2)
+plotcom <-  grid.arrange(plot1, plot2, ncol = 2) #combine plots to one grid
 ggsave(filename="2.3 Combined plot.pdf", plot= plotcom , width=10, height=6, units="in") #combining together
 dev.off()
 
