@@ -40,10 +40,10 @@ y <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 8
 
 mean_y <- mean(y) #Find Point Estimate
 mean_y
-se_y <- sd(y) / sqrt(length(y)) #Standard error, where n found by length of y
-se_y 
 n <- length(y) #Sample size
 n
+se_y <- sd(y) / sqrt(n) #Standard error, where n found by length of y
+se_y 
 
 tscore_90 <- qt(0.05, 24, lower.tail = FALSE) #Find t-score
     # where p is ((1-.90)/2) = 0.05, df = n - 1 = 24
@@ -93,7 +93,7 @@ pdf("2.2 State Housing Expenditure by Region Boxplot.pdf")
 ggplot(expenditure, aes(x = Region_name, y = Y, fill = Region_name)) + #fill colour by region category
   stat_boxplot(geom ='errorbar') + #to add whiskers
   geom_boxplot() +
-  labs(x = "Region", y = "Per capita expenditure on housing assistance in state") +
+  labs(x = "Region", y = "Per capita expenditure on housing assistance in state") 
 dev.off()
 
 #Finding regional averages 

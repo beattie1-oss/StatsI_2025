@@ -89,24 +89,24 @@ A school counselor was curious about the average of IQ of the students in her sc
 
 \noindent
 \begin{itemize}
-	\item \textbf{Step 1: } is to find the point estimate around which a confidence interval can be constructed.  We use this sample to incorporate a margin of error around our mean to estimate a range that we think likely a true population parameter would fall in 90\% of the time with repeated sampling  In this case, the point average is found as the mean of IQ scores. 
+	\item \textbf{Step 1: } Find the point estimate around which a confidence interval can be constructed. We then take this point estimate and by incorporating a margin of error we estimate a range that we think likely a true population parameter would fall in 90\% of the time with repeated sampling. In this case, the point estimate is the average (mean) of IQ scores . 
 		\begin{equation}
-		\bar{y} =(\sum_{i}^{n}y_i)/ n
+		\bar{y} = \frac{\sum_{i}^{n}y_i}{n}
 		\end{equation} 
 		\lstinputlisting[language=R, firstline=41, lastline=42]{PS01.R}\ 
 		\begin{verbatim}
 		[1] 98.44
 		\end{verbatim} 
-	\item \textbf{Step 2: } To determine the standard error (i.e how different the population mean is likely to be from the sample given the variability and the sample size). 
+	\item \textbf{Step 2: } Determine the standard error (i.e how different the population mean is likely to be from the sample given the variability and the sample size). 
 		\begin{equation}
 			\hat{\sigma}_{\bar{y}} = \frac{S}{\sqrt{n}} = \frac{\sqrt{\frac{\sum (y_i - 	\bar{y})^2}{n-1}}}{\sqrt{n}}
 		\end{equation}
 		\lstinputlisting[language=R, firstline=43, lastline=46]{PS01.R}\
 		\begin{verbatim}
-			[1] 2.618575
 			[1] 25
+			[1] 2.618575
 		\end{verbatim}
-	\item \textbf{Step 3: } To find relevant t-score. Since $n<30$  it is better to use t-distribution as it accounts for smaller sample sizes. We find the t-score by using the relevant tail probability and the degrees of freedom ($df$). The tail probability is $\alpha/2$ (as two-tailed interval) where the $\alpha$ significance level is the area under the density function minus the tails i.e. 1 minus the wanted 0.9 confidence level  $\alpha/2 = ((1-0.9))/2 = 0.05$  and the $df=n-1=24$ 
+	\item \textbf{Step 3: } Find relevant t-score. Since $n<30$  it is better to use t-distribution as it accounts for smaller sample sizes. We find the t-score by using the relevant tail probability and the degrees of freedom ($df$). The tail probability is $\alpha/2$ (as two-tailed interval) where the $\alpha$ significance level is the area under the density function minus the tails i.e. 1 minus the wanted 0.9 confidence level  $\alpha/2 = ((1-0.9))/2 = 0.05$  and the $df=n-1=24$ 
 		\lstinputlisting[language=R, firstline=48, lastline=50]{PS01.R}\
 		\begin{verbatim}
 			[1] 1.710882
