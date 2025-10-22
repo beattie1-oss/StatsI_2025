@@ -82,32 +82,38 @@ GP <- read.csv("https://raw.githubusercontent.com/kosukeimai/qss/master/PREDICTI
 glimpse(GP)
 summary(GP)
 str(GP)
-plot(GP)
 
-## 2. a Hypothesis ##
+#Explore data # 
 
 summary(GP$water)
-plot(density(GP$water))
+count(GP$reserved)
+png("PS02_explore.png", width = 10, height = 5, units = "in", res = 200)
+layout(matrix(c(1,2), 2, 2, byrow = TRUE))
+hist(GP$reserved, main = "Number of Reserved/Unreserved GP's", 
+     xaxt = "n", xlab = "Reserved GP")
+  axis(1, at = c(0,1))
+plot(density(GP$water), main = "Density of New/Repaired Water Facilities")
+dev.off()
 
 ## 2. b Bivariate regression ##
 
-reg1 <- lm(data= GP, water~reserved)
+reg1 <- lm(data= GP, water~reserved) #response water
 output_stargazer <- function(outputFile, ...) {
   output <- capture.output(stargazer(...))
   cat(paste(output, collapse = "\n"), "\n", file=outputFile, append=TRUE)
-}
+} #formula from template for saving regression as txt
 output_stargazer("PS02_reg1output.tex", reg1)
 
 pdf("PS02_Reg_Plot.pdf")
 plot(GP$reserved, 
      GP$water,
-     xaxt = "n",
+     xaxt = "n", #remove xaxis
      xlab="Reserved Policy",
      ylab="Number water facilities")
   abline(reg1, col = "red") # Add regression line
-  axis(1, at = c(0,1))
+  axis(1, at = c(0,1)) # add 0, 1 in line with binary variable
 dev.off()
 
 ## 2. c Interpret COefficient estimate ##
-
+summary(reg1)
 confint(reg1, level = 0.95)

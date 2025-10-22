@@ -26,6 +26,7 @@
 \usetikzlibrary{arrows}
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{fancyvrb}
 \newcolumntype{.}{D{.}{.}{-1}}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 \definecolor{light-gray}{gray}{0.65}
@@ -171,7 +172,7 @@
 		 \frac{f_O - f_e)}{\sqrt[]{f_e(1-row prop.)(1- col prop.)}}
 	\end{equation}\\
 	
-	\lstinputlisting[language=R, firstline=59, lastline=61]{PS02_EB.R}
+	\lstinputlisting[language=R, firstline=68, lastline=70]{PS02_EB.R}
 	
 	\begin{table}[h]
 		\centering
@@ -191,13 +192,14 @@
 	\newpage
 	\item [(d)] How might the standardized residuals help you interpret the results?  \\
 	\begin{itemize}
-		\item 	Table is good to quickly visualise where the biggest differences are between observed and expected frequency. This may help find out where the largest residuals are that contribute to the chi-square.
+		\item 	The table is good way to quickly visualise where we find the biggest standardised differences between observed and expected frequency. This may help find out where the largest residuals are that contribute to the chi-square.
 		\item Cells also have different numbers of counts and therefore those with more counts are likely to have larger residuals overall, but by standardizing them, each cell's adjusted residuals can more fairly be compared.
 		\item Another benefit of standardised residuals is they because they are standardised they approximate to the standard normal distribution N(0,1), therefore can be used to conduct post-hoc tests on specific cells. 
 		\item The absolute value of the cells can be compared with critical values i.e $N(0,1)_(1-\alpha/2) = 1.96 $ at $\alpha = 0.05$ level such that any standardized residuals greater than this level will be significant.
-		\item Here we can see that none of the cells values have an absolute value equal to or greater than 1.96 indicating there is not a significant difference between expected and observed to a level $\alpha = 0.05$. This lines up with our overall Chi-squared result but if we were to find statistical independence this would allow us to see precisely where the variations came from. 
+		\item Here we can see that none of the cells values have an absolute value equal to or greater than 1.96 indicating there is not a significant difference between expected and observed to a level $\alpha = 0.05$. This lines up with our overall Chi-squared result that the variables are statistically independent. 
+		\item However, if we were to find that the variable were not independent with significant differences between observed and expected frequencies, this table of standardized residuals would allow us to see and analyse precisely which cells differed and by how much.   
 	\end{itemize}
-  . 
+ 
 	
 	
 \end{enumerate}
@@ -212,8 +214,10 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\caption{\footnotesize{Names and description of variables from Chattopadhyay and Duflo (2004).}}
 	\vspace{.5cm}
 	\centering
-	\label{fig:women_desc}
+	\includegraphics[width=.75\textwidth]{women_desc.png}
+	\label{fig:women_desc.png}
 \end{figure}
+\FloatBarrier
 
 	\lstinputlisting[language=R, firstline=80, lastline=80]{PS02_EB.R}		
 
@@ -221,42 +225,91 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 \begin{enumerate}
 	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
 	
-	Null hypothesis: Having a reservation policy has no effect on the number of new or repaired drinking-water facilities in the villages
-	Alternative hypothesis: Having a reservation policy has an effect on the number of new or repaired drinking-water facilities in the villages
+	\begin{itemize}
+		\item Null hypothesis: Having a reservation policy has no effect on the number of new or repaired drinking-water facilities in the villages, $H_0: \beta_1 = 0$
+		\item 	Alternative hypothesis: Having a reservation policy has an effect on the number of new or repaired drinking-water facilities in the villages, $ H_a: \beta_1 \ne 0$
+ 
+	\end{itemize}
 	
-	\vspace{6cm}
-	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
-	\lstinputlisting[language=R, firstline=94, lastline=99]{PS02_EB.R}
+	\vspace{1cm}
+	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).\\ 
+	 
+	Identify that GP is the observations $n=322$, the explanatory variable for my hypothesis is reserved ($x_1$)and the response variable is water ($Y$), such that the linear model is $Y = \alpha +\beta_1X$. 
+	First step is to get familiar with the data to see sample distribution.  \\
+	\lstinputlisting[language=R, firstline=88, lastline=88]{PS02_EB.R}
+	\begin{verbatim}
+	 summary(GP$water)
+		Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+		0.00    3.00    9.00   17.84   20.00  340.00
+	\end{verbatim}
+	\lstinputlisting[language=R, firstline=89, lastline=89]{PS02_EB.R}
+	\begin{verbatim}
+		> count(GP$reserved)
+			x freq
+			1 0  214
+			2 1  108
+	\end{verbatim}
+	\lstinputlisting[language=R, firstline=90, lastline=96]{PS02_EB.R}
+		\begin{figure}[!htbp]\centering
+		\caption{\footnotesize Distribution plots of Explanatory and Response variables}
+		\label{fig:plot_1}
+		\includegraphics[width=.8\textwidth]{PS02_explore.png}
+	\end{figure}
+	\FloatBarrier
+	From this initial investigation we can see that reserved is a binary variable, i.e  1 indicating a reserved GP and 0 indicating it is not reserved for women. We can see that there are roughly double the number of unreserved GP's to reserved.
+	We can also see the distribution of Y that there is a positive skew.  The mean is $\bar{y}= 17.84$ and the median is $9$ indicating the impact of larger values increasing the mean, consistent with the seen positive skew. There does appear to be a few outliers with very high values (like the max of 340) that is important to be aware of going into the regression. \\
 	
+	
+	\lstinputlisting[language=R, firstline=100, lastline=115]{PS02_EB.R}
+
 	\input{PS02_reg1output.tex}
-	
-	
-	\lstinputlisting[language=R, firstline=101, lastline=109]{PS02_EB.R}
-	\begin{figure}[h!]\centering
+	\FloatBarrier
+	\begin{figure}[!htbp]\centering
 		\caption{\footnotesize Plot of Water and Reserved Policy}
 		\label{fig:plot_1}
-		\includegraphics[width=.75\textwidth]{PS02_Reg_Plot.pdf}
+		\includegraphics[width=.65\textwidth]{PS02_Reg_Plot.pdf}
 	\end{figure}
+	\FloatBarrier
 	
-	
-	\vspace{6cm}
-	\item [(c)] Interpret the coefficient estimate for reservation policy. 
-	
-	The coefficient estimate is the value from the model that shows how a change in one variable is associated with another, in this case looking at reservation policy on water facilities. The coefficient estimate $\hat\beta_1$ for reservation policy is 9.252. This means that having a reservation policy is associated with villages having 9.252 more new or repaired drinking-water facilities. The standard error of the estimate $se_(\hat\beta_1) = 3.948$ At $\alpha= .05$ we are able to reject the null hypothesis  $p <0.05$ and accept that having a reservation policy does have a statistically significant impact on the number of new or repaired drinking-water facilities in a village. 
-	
-	We can constructing a 95\% confidence interval
-	
-	Confidence interval
-	It is nevertheless important to remember the assumptions underpinning this interpretation, such as the relationship being linear, independent observations, normal and constant variance with normal errors. There is also other factors to consider, including
-	\lstinputlisting[language=R, firstline=113, lastline=113]{PS02_EB.R}
+	\lstinputlisting[language=R, firstline=118, lastline=118]{PS02_EB.R}
 	\begin{verbatim}
-		                2.5 %   97.5 %
-		(Intercept) 10.240240 19.23640
-		reserved     1.485608 17.01924
+		Coefficients:
+													Estimate 		Std.Error 		t value 		Pr(>|t|)    
+		(Intercept)   14.738      2.286   	6.446 		4.22e-10 ***
+		reserved       9.252      3.948   	2.344   	0.0197 *  
+		---
+		Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+		
+		Residual standard error: 33.45 on 320 degrees of freedom
+		Multiple R-squared:  0.01688,	Adjusted R-squared:  0.0138 
+		F-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197
 	\end{verbatim}
-	Thus a 95\% confidence interval of the estimate with $t_n-2$ is [1.49,17.02] which does not include zero, further confirming our evidence that the estimate found is not 0. 
-	high correlation between reserved and women 
-	spurious / chain relationships discuss
+	\vspace{1cm}
+	\item [(c)] Interpret the coefficient estimate for reservation policy. 
+	\begin{itemize}
+		\item 	The coefficient estimate is the slope of the best fit regression line from the model, i.e. how a change in one variable is associated with another, in this case looking at reservation policy on water facilities.
+		\item The coefficient estimate $\hat\beta_1=9.525$ can be interpreted as having a reservation policy (a 1 unit increase for binary variable) is associated with 9.252 increase in the number of new or repaired drinking-water facilities.
+		\item Our coefficient estimate is point estimate that we have used to make a best guess as to the true unknown population parameter. We need to therefore summarize just how well our estimate supports our hypothesis allowing us to make inferences about the population. 
+		\item From our model we can see the standard error of the estimate $se_(\hat\beta_1) = 3.948$. This indicates the uncertainty of the estimate, i.e if we were to conduct repeated sampling how much do we expect the coefficient to differ. 
+		\item We can test our estimate by using the t-distribution to compare a calculated t-score to a relevant critical value given our null ($H_0: \beta_1 = 0$); \begin{equation}
+			t = \frac{\hat{\beta}_1 -0}{se_(\hat{\beta}_1)} = \frac{9.252}{3.948} = 2.344 \sim t_{n-2}
+		\end{equation}
+		\item  To calculate p-value we use two-tailed probability from t-distribution
+			\begin{equation}
+				p-value = 2 \times Pr(t_{320} > |2.344|) = 0.0197
+				\end{equation}
+		\item At $\alpha= .05$ we are able to reject the null hypothesis as $p <0.05$ and accept the alternative that $\beta_1$ is statistically differentiable from 0 i.e.  that having a reservation policy does impact the number of new or repaired drinking-water facilities in a village. 
+		\item We can also construct a 95\% confidence interval for our found estimate
+		\lstinputlisting[language=R, firstline=113, lastline=113]{PS02_EB.R}
+		\begin{verbatim}
+																		2.5 %   97.5 %
+			(Intercept) 10.240240 19.23640
+			reserved     1.485608 17.01924
+		\end{verbatim}
+		\item 	Thus a 95\% confidence interval of the estimate with $t_{320}$ is [1.49,17.02] which does not include zero, further confirming our rejection of the null hypothesis. We can also conclude that at the 95\% confidence level, having a reservation policy increases the number of new/repaired drinking water facilities by as few as 1.49 facilities or as many as 17.02 facilities. 
+		 
+	\end{itemize}
+
 \end{enumerate}
 
 
