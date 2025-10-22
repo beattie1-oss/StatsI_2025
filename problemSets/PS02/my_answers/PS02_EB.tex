@@ -77,9 +77,9 @@
 	\vspace{.5cm}
 	\section*{Question 1: Political Science}
 		\vspace{.25cm}
-	The following table was created using the data from a study run in a major Latin American city.\footnote{Fried, Lagunes, and Venkataramani (2010). ``Corruption and Inequality at the Crossroad: A Multimethod Study of Bribery and Discrimination in Latin America. \textit{Latin American Research Review}. 45 (1): 76-97.} As part of the experimental treatment in the study, one employee of the research team was chosen to make illegal left turns across traffic to draw the attention of the police officers on shift. Two employee drivers were upper class, two were lower class drivers, and the identity of the driver was randomly assigned per encounter. The researchers were interested in whether officers were more or less likely to solicit a bribe from drivers depending on their class (officers use phrases like, ``We can solve this the easy way'' to draw a bribe). The table below shows the resulting data.
+	The following table was created using the data from a study run in a major Latin American city.\footnote{Fried, Lagunes, and Venkataramani (2010). ``Corruption and Inequality at the Crossroad: A Multimethod Study of Bribery and Discrimination in Latin America. \textit{Latin American Research Review}. 45 (1): 76-97.} As part of the experimental treatment in the study, one employee of the research team was chosen to make illegal left turns across traffic to draw the attention of the police officers on shift. Two employee drivers were upper class, two were lower class drivers, and the identity of the driver was randomly assigned per encounter. The researchers were interested in whether officers were more or less likely to solicit a bribe from drivers depending on their class (officers use phrases like, ``We can solve this the easy way'' to draw a bribe). The table below shows the resulting data. \\
 
-\newpage
+
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{l | c c c }
@@ -91,19 +91,87 @@
 		\hline
 	\end{tabular}
 \end{table}
-
+\newpage
 \begin{enumerate}
 	
 	\item [(a)]
 	Calculate the $\chi^2$ test statistic by hand/manually (even better if you can do "by hand" in \texttt{R}).\\
-	\vspace{7cm}
+	
+	\begin{itemize}
+		\item  A Chi-squared test looks to determine if two categorical variables are statistically independent from each other. In this case we want to discern whether class and police response from traffic violation are statistically independent
+		\item The null hypothesis $H_O$ is that the variables - Class and Encounter - are statistically independent. Our alternative $H_a$ is that they are not independent. 
+		\item This is determined by looking at the observed and expected frequencies of the data. The expected frequency is the frequency that we would observe if the null was true and the variables were independent. 
+		\item Our null therefore is that expected frequencies do not differ from observed frequencies. $H_O: f_O = f_e$ , and if there is not a statistical significant difference between them we have evidence supporting this hypothesis.
+		\item  Alternatively, if we do find that our expected frequencies differ significantly from observed, $H_O: f_O \ne f_e$ , we have evidence to reject the null and accept that the variables are not statistically independent.   
+	\end{itemize} 
+	\vspace{1cm}
+	
+	First step is to load in data. After transferring the table data, add on a 'Total' row and column that sum up the total frequencies in each category respectively. \\
+	\lstinputlisting[language=R, firstline=37, lastline=43]{PS02_EB.R} 
+	\begin{verbatim}
+		Observed frequency with Totals
+		            Not_Stopped Bribe_Requested Stopped_Warned Total
+		Upper Class          14               6              7    27
+		Lower Class           7               7              1    15
+		Total                21              13              8    42
+	\end{verbatim}
+	
+	We also determine the expected frequencies of the data, which are the frequencies expected if the categories had no impact on the other variable. 
+	\begin{equation}
+		f_e = \frac{row\quad total}{grand\quad total} \times column\quad  total
+	\end{equation}
+	\lstinputlisting[language=R, firstline=46, lastline=51]{PS02_EB.R}
+	\begin{verbatim}
+		Expected Frequencies
+		            Not_Stopped Bribe_Requested Stopped_Warned
+		Upper Class        13.5            8.36           5.14
+		Lower Class         7.5            4.64           2.86
+	\end{verbatim}
+	
+	Now we compare the observed and expected frequency tables to calculate a Chi-square.
+		\begin{equation}
+		\chi^2 = \sum\frac{(f_O - f_e)^2}{f_e} 
+	\end{equation}
+	\lstinputlisting[language=R, firstline=53, lastline=55]{PS02_EB.R}
+	\begin{verbatim}
+		[1] 3.801141
+	\end{verbatim}
+	
+	The overall test statistic of the Chi-squared is $\chi ^2 = 3.80$
+	\vspace*{1cm}
 	
 	\item [(b)]
 	Now calculate the p-value from the test statistic you just created (in \texttt{R}).\footnote{Remember frequency should be $>$ 5 for all cells, but let's calculate the p-value here anyway.}  What do you conclude if $\alpha = 0.1$?\\
 	
-	\newpage
-	\item [(c)] Calculate the standardized residuals for each cell and put them in the table below.
-	\vspace{1cm}
+	Calculate the p-value, i.e the probability of finding our Chi-square value under the null hypothesis given the degrees of freedom. 
+	\lstinputlisting[language=R, firstline=59, lastline=61]{PS02_EB.R}
+	\begin{verbatim}
+	[1] 0.1494833
+	\end{verbatim}
+	
+	 Since the p-value $p=0.150$ is greater than set confidence level - $p=0.150 > 0.1 = \alpha $ - we accept our null hypothesis that the two variables are statistically independent. This means we do not have evidence to accept the alternative hypothesis that class impacts the encounter when breaking traffic laws.  
+	
+	We can check these results with the  built-in Chi-square function in R and see they are the same (bar rounding) to our by-hand values. 
+	\lstinputlisting[language=R, firstline=63, lastline=63]{PS02_EB.R}
+	 \begin{verbatim}
+	 	Pearson's Chi-squared test
+	 	data:  fO and fe
+	 	X-squared = 3.7912, df =
+	 	2, p-value = 0.1502
+	 \end{verbatim}
+	 
+	\vspace*{1cm}
+	\item [(c)] Calculate the standardized residuals for each cell and put them in the table below. \\
+
+	By calculating standardized residuals we can see how much each observed value differs from the expected. 
+	This is the difference between the observed and expected frequency adjusted by the standard error of the difference under the null hypothesis. \\
+	
+	\begin{equation}
+		z = \frac{f_O - f_e}{se} =
+		 \frac{f_O - f_e)}{\sqrt[]{f_e(1-row prop.)(1- col prop.)}}
+	\end{equation}\\
+	
+	\lstinputlisting[language=R, firstline=59, lastline=61]{PS02_EB.R}
 	
 	\begin{table}[h]
 		\centering
@@ -111,16 +179,26 @@
 			& Not Stopped & Bribe requested & Stopped/given warning \\
 			\\[-1.8ex] 
 			\hline \\[-1.8ex]
-			Upper class  &  &  &  \\
+			Upper class  & 0.32 & -1.52 & 1.65 \\
 			\\
-			Lower class &  &   &   \\
-			
+			Lower class & -0.27  &  1.93 & -1.52  \\
+			                                              
 		\end{tabular}
 	\end{table}
 	
 	
-	\vspace{7cm}
-	\item [(d)] How might the standardized residuals help you interpret the results?  
+	
+	\newpage
+	\item [(d)] How might the standardized residuals help you interpret the results?  \\
+	\begin{itemize}
+		\item 	Table is good to quickly visualise where the biggest differences are between observed and expected frequency. This may help find out where the largest residuals are that contribute to the chi-square.
+		\item Cells also have different numbers of counts and therefore those with more counts are likely to have larger residuals overall, but by standardizing them, each cell's adjusted residuals can more fairly be compared.
+		\item Another benefit of standardised residuals is they because they are standardised they approximate to the standard normal distribution N(0,1), therefore can be used to conduct post-hoc tests on specific cells. 
+		\item The absolute value of the cells can be compared with critical values i.e $N(0,1)_(1-\alpha/2) = 1.96 $ at $\alpha = 0.05$ level such that any standardized residuals greater than this level will be significant.
+		\item Here we can see that none of the cells values have an absolute value equal to or greater than 1.96 indicating there is not a significant difference between expected and observed to a level $\alpha = 0.05$. This lines up with our overall Chi-squared result but if we were to find statistical independence this would allow us to see precisely where the variations came from. 
+	\end{itemize}
+  . 
+	
 	
 \end{enumerate}
 \newpage
@@ -135,73 +213,51 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\vspace{.5cm}
 	\centering
 	\label{fig:women_desc}
-	\includegraphics[width=1.1\textwidth]{../../../../graphics/women_desc.png}
-\end{figure}		
+\end{figure}
+
+	\lstinputlisting[language=R, firstline=80, lastline=80]{PS02_EB.R}		
 
 \newpage
 \begin{enumerate}
 	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
 	
+	Null hypothesis: Having a reservation policy has no effect on the number of new or repaired drinking-water facilities in the villages
+	Alternative hypothesis: Having a reservation policy has an effect on the number of new or repaired drinking-water facilities in the villages
+	
 	\vspace{6cm}
 	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
+	\lstinputlisting[language=R, firstline=94, lastline=99]{PS02_EB.R}
+	
+	\input{PS02_reg1output.tex}
+	
+	
+	\lstinputlisting[language=R, firstline=101, lastline=109]{PS02_EB.R}
+	\begin{figure}[h!]\centering
+		\caption{\footnotesize Plot of Water and Reserved Policy}
+		\label{fig:plot_1}
+		\includegraphics[width=.75\textwidth]{PS02_Reg_Plot.pdf}
+	\end{figure}
+	
 	
 	\vspace{6cm}
 	\item [(c)] Interpret the coefficient estimate for reservation policy. 
+	
+	The coefficient estimate is the value from the model that shows how a change in one variable is associated with another, in this case looking at reservation policy on water facilities. The coefficient estimate $\hat\beta_1$ for reservation policy is 9.252. This means that having a reservation policy is associated with villages having 9.252 more new or repaired drinking-water facilities. The standard error of the estimate $se_(\hat\beta_1) = 3.948$ At $\alpha= .05$ we are able to reject the null hypothesis  $p <0.05$ and accept that having a reservation policy does have a statistically significant impact on the number of new or repaired drinking-water facilities in a village. 
+	
+	We can constructing a 95\% confidence interval
+	
+	Confidence interval
+	It is nevertheless important to remember the assumptions underpinning this interpretation, such as the relationship being linear, independent observations, normal and constant variance with normal errors. There is also other factors to consider, including
+	\lstinputlisting[language=R, firstline=113, lastline=113]{PS02_EB.R}
+	\begin{verbatim}
+		                2.5 %   97.5 %
+		(Intercept) 10.240240 19.23640
+		reserved     1.485608 17.01924
+	\end{verbatim}
+	Thus a 95\% confidence interval of the estimate with $t_n-2$ is [1.49,17.02] which does not include zero, further confirming our evidence that the estimate found is not 0. 
+	high correlation between reserved and women 
+	spurious / chain relationships discuss
 \end{enumerate}
 
-%\newpage
-%	\section*{Question 3 (30 points): Biology}
-%
-%There is a physiological cost of reproduction for fruit flies, such that it reduces the lifespan of female fruit flies.  Is there a similar cost to male fruit flies?  This dataset contains observations from five groups of 25 male fruit flies. The experiment tests if increased reproduction reduces longevity for male fruit flies. The five groups are: males forced to live alone, males assigned to live with one or eight newly pregnant females (non-receptive females), and males assigned to live with one or eight virgin females (interested females). The name of the data set is \texttt{fruitfly.csv}.\footnote{Partridge and Farquhar (1981).``Sexual Activity and the Lifespan of Male Fruitflies''. \textit{Nature}. 294, 580-581.}
-%	\vspace{1cm}
-%
-%\begin{tabular}{r|l}
-%	\texttt{No} & serial number (1-25) within each group of 25\\
-%	\texttt{type} & Type of experimental assignment \\
-%	& \hspace{0.1in} $1=$ no females  \\
-%	& \hspace{0.1in} $2=$ 1 newly pregnant female \\
-%	& \hspace{0.1in} $3=$ 8 newly pregnant females\\
-%	& \hspace{0.1in} $4=$ 1 virgin female\\
-%	& \hspace{0.1in} $5=$ 8 virgin females\\
-%	\texttt{lifespan} & lifespan (days)\\
-%	\texttt{thorax} & length of thorax (mm)\\
-%	\texttt{sleep} & percentage of each day spent sleeping\\
-%\end{tabular}
-%	\vspace{1cm}
-%\begin{enumerate}
-%	
-%	\item
-%	Import the data set and obtain summary statistiscs and examine the distribution of the overall lifespan of the fruitflies.  
-%
-%\newpage
-%	\item
-%	Plot \texttt{lifespan} vs \texttt{thorax}. Does it look like there is a linear relationship? Provide the plot. What is the correlation coefficient between these two variables?
-%		\vspace{6cm}
-%	\item
-%	Regress \texttt{lifespan} on \texttt{thorax}.  Interpret the slope of the fitted model.
-%			\vspace{6cm}
-%	\item
-%	Test for a significant linear relationship between  \texttt{lifespan} and \texttt{thorax}. Provide and interpret your results of your test.
-%	
-%\newpage
-%	\item
-%	
-%	Provide the 90\% confidence interval for the slope of the fitted model.
-%	
-%			\vspace{.5cm}
-%	\begin{itemize}
-%		\item
-%		Use the formula of confidence interval.		\vspace{.5cm}
-%		\item
-%		Use the function  \texttt{confint()}  in \texttt{R} .
-%	\end{itemize}
-%			\vspace{6cm}
-%	\item Use the \texttt{predict()} function in \texttt{R} to (1) predict an individual fruitfly's lifespan when \texttt{thorax}=0.8 and (2) the average \texttt{lifespan} of fruitflies when \texttt{thorax}=0.8 by the fitted model. This requires that you compute prediction and confidence intervals. What are the expected values of lifespan? What are the prediction and confidence intervals around the expected values? 
-%	
-%			\vspace{6cm}
-%	\item	For a sequence of \texttt{thorax} values, draw a plot with their fitted values for \texttt{lifespan}, as well as the prediction intervals and confidence intervals.
-%
 
-
-%\end{enumerate}
 \end{document}
