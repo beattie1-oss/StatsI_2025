@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  4 NOV 2025 15:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  4 NOV 2025 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./PS02_EB.tex
-(PS02_EB.tex
+**./PS03.tex
+(PS03.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -853,9 +853,6 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
-Package: placeins 2005/04/18  v 2.2
-)
 \c@hyp=\count338
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
@@ -863,31 +860,27 @@ tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count339
 \l__pdf_internal_box=\box76
-) (PS02_EB.aux
+) (PS03.aux)
+\openout1 = `PS03.aux'.
 
-LaTeX Warning: Label `fig:plot_1' multiply defined.
-
-)
-\openout1 = `PS02_EB.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 75.
-LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -914,187 +907,54 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
 
  (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
 
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package xypdf Info: Line width: 0.47998pt on input line 75.
-Package hyperref Info: Link coloring OFF on input line 75.
+Package xypdf Info: Line width: 0.47998pt on input line 68.
+Package hyperref Info: Link coloring OFF on input line 68.
 
-(PS02_EB.out) (PS02_EB.out)
+(PS03.out) (PS03.out)
 \@outlinefile=\write7
-\openout7 = `PS02_EB.out'.
+\openout7 = `PS03.out'.
 
 \c@lstlisting=\count346
+ [1
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
-
- []
-
-[1
-
-{C:/Users/ellen/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 99--100
-
- []
-
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-)
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
-File: lstlang2.sty 2023/02/27 1.9 listings language file
-)
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
-File: lstlang3.sty 2023/02/27 1.9 listings language file
-)
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 111.
-(PS02_EB.R
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 3
-7.
-
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
-File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 37.
-)
-(PS02_EB.R [2]) (PS02_EB.R)
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-
- []
-
-(PS02_EB.R) (PS02_EB.R) [3]
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 167--169
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 173--174
-
- []
-
-(PS02_EB.R) [4]
-Underfull \hbox (badness 10000) in paragraph at lines 193--194
-
- []
-
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
-
-
-LaTeX Warning: Reference `fig:women_desc' on page 6 undefined on input line 211
-.
-
-<women_desc.png, id=81, 750.805pt x 300.12125pt>
-File: women_desc.png Graphic file (type png)
-<use women_desc.png>
-Package pdftex.def Info: women_desc.png  used on input line 217.
-(pdftex.def)             Requested size: 352.31625pt x 140.83261pt.
-(PS02_EB.R) [6 <./women_desc.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--239
-
- []
-
-(PS02_EB.R) (PS02_EB.R) (PS02_EB.R)
-<PS02_explore.png, id=92, 722.7pt x 361.35pt>
-File: PS02_explore.png Graphic file (type png)
-<use PS02_explore.png>
-Package pdftex.def Info: PS02_explore.png  used on input line 256.
-(pdftex.def)             Requested size: 375.80544pt x 187.90308pt.
- [7]
-Underfull \hbox (badness 10000) in paragraph at lines 259--261
-
- []
-
-(PS02_EB.R
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-01.
-
-(C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
-File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 101.
-)
-(PS02_reg1output.tex) [8 <./PS02_explore.png>]
-<PS02_Reg_Plot.pdf, id=133, 505.89pt x 505.89pt>
-File: PS02_Reg_Plot.pdf Graphic file (type pdf)
-<use PS02_Reg_Plot.pdf>
-Package pdftex.def Info: PS02_Reg_Plot.pdf  used on input line 270.
-(pdftex.def)             Requested size: 305.33789pt x 305.34264pt.
- [9 <./PS02_Reg_Plot.pdf>]
-(PS02_EB.R) [10
-
-] (PS02_EB.R) [11] (PS02_EB.aux)
+{C:/Users/ellen/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2] [3] [4] 
+[5] [6] (PS03.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `PS02_EB.out' has not changed.
+Package rerunfilecheck Info: File `PS03.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27422 strings out of 474486
- 482698 string characters out of 5743755
- 2054542 words of memory out of 5000000
- 49103 multiletter control sequences out of 15000+600000
- 570153 words of font info for 86 fonts, out of 8000000 for 9000
+ 26174 strings out of 474486
+ 467301 string characters out of 5743755
+ 1932542 words of memory out of 5000000
+ 47973 multiletter control sequences out of 15000+600000
+ 568173 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,3241b,2209s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,6n,93p,3238b,534s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ellen\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk> <C:\Users\ellen\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\tcrm1200.pk><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmex10.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ellen/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ellen/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/ellen/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ell
-en/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/U
-sers/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.p
-fb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmr6.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ellen/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/ellen/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ellen/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on PS02_EB.pdf (11 pages, 290240 bytes).
+1200.pk><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/ellen/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on PS03.pdf (6 pages, 68551 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 88 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 85 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
