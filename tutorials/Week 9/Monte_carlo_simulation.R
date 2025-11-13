@@ -43,6 +43,7 @@ b0 <- .2          # True intercept
 b1 <- .5          # True slope for X1
 b2 <- .75         # True slope for X2
 n  <- 1000        # Sample size
+# Y = 0.2 + 0.5*b1 + 0.75*b2 +e
 
 # Correlation levels between IVs
 cor.level <- c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .99)
@@ -54,19 +55,21 @@ par.est.ov <- matrix(NA, nrow = reps, ncol = length(cor.level))
 for (j in 1:length(cor.level)) {      # loop over correlation levels
   for (i in 1:reps) {                 # loop over replications
     
-    X.corr <- matrix(c(1, cor.level[j], cor.level[j], 1), nrow = 2)
-    X <- rmvnorm(n, mean = c(0, 0), sigma = X.corr)   # correlated IVs
-    X1 <- X[, 1]
-    X2 <- X[, 2]
+    X.corr <- matrix(c(1, cor.level[j], cor.level[j], 1), nrow = 2) #correlation matrix look at diagonals
+  
+    X <- rmvnorm(n, mean = c(0, 0), sigma = X.corr)  #assume normal distribution,  # correlated IVs
+    X1 <- X[, 1] #keep x1 as first column
+    X2 <- X[, 2] #keep x2 as second column
     
     Y <- b0 + b1 * X1 + b2 * X2 + rnorm(n, 0, 1)      # true DGP
     model <- lm(Y ~ X1)                               # omit X2
-    par.est.ov[i, j] <- model$coef[2]                 # store coefficient
+    par.est.ov[i, j] <- model$coef[2]                 # store coefficient on this matrix
   }
 }
 
 # Print estimates
 par.est.ov
+head(par.est.ov) 
 
 # -----------------------------------------------------------
 # Summarize estimates
@@ -96,6 +99,9 @@ legend(0, 12,
        legend = c("r=0", "r=0.2", "r=0.5", "r=0.99"),
        col = c("black", "gray", "orange", "red"),
        pch = 1)
+# For correlation 0, true b1 slope is 0.5, by end light grey 0.2 variance between x1/x2, 
+# As correlation between x1 and x2 increase the result gets more and more biased with r=.99 being very different from 'real' set slope
+# Show importance with Omitted Variable Bias - how much the slope estimates are effected
 
 
 # And in ggplot: 
@@ -161,7 +167,7 @@ diag(rand.vcv) <- 1
 # Create 20 uncorrelated variables
 rand.data <- as.data.frame(
   rmvnorm(1000, mean = rep(0, times = 20), sigma = rand.vcv)
-)
+) # create fake data we know is uncorrelated with each other
 
 # Rename columns
 colnames(rand.data) <- c(
