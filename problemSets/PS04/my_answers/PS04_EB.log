@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  27 NOV 2025 08:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  27 NOV 2025 10:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./EB_PS03.tex
-(EB_PS03.tex
+**./PS04_EB.tex
+(PS04_EB.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -863,43 +863,27 @@ tex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count339
 \l__pdf_internal_box=\box76
-) (EB_PS03.aux
+) (PS04_EB.aux)
+\openout1 = `PS04_EB.aux'.
 
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `fig:plot_4' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-)
-\openout1 = `EB_PS03.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
-LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -926,29 +910,25 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
 
  (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package xypdf Info: Line width: 0.47998pt on input line 77.
-Package hyperref Info: Link coloring OFF on input line 77.
+Package xypdf Info: Line width: 0.47998pt on input line 78.
+Package hyperref Info: Link coloring OFF on input line 78.
 
-(EB_PS03.out) (EB_PS03.out)
+(PS04_EB.out) (PS04_EB.out)
 \@outlinefile=\write7
-\openout7 = `EB_PS03.out'.
+\openout7 = `PS04_EB.out'.
 
 \c@lstlisting=\count346
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-
- []
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
@@ -960,91 +940,117 @@ File: lstlang2.sty 2023/02/27 1.9 listings language file
 File: lstlang3.sty 2023/02/27 1.9 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 92.
+nput line 87.
 
-(EB_PS03.R
+(PS04_EB.R) (PS04_EB.R
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 3
-4.
+8.
 
 (C:\Users\ellen\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 34.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 38.
 )
-(EB_PS03.R) [1
+[1
 
-{C:/Users/ellen/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (EB_PS03.R) 
-(EB_PS03.R [2])
-<PS03_reg1plot.pdf, id=52, 505.89pt x 505.89pt>
-File: PS03_reg1plot.pdf Graphic file (type pdf)
-<use PS03_reg1plot.pdf>
-Package pdftex.def Info: PS03_reg1plot.pdf  used on input line 144.
-(pdftex.def)             Requested size: 281.85587pt x 281.86067pt.
- (EB_PS03.R) [3 <./PS03_reg1plot.pdf>] (EB_PS03.R) (EB_PS03.R [4])
-<PS03_reg2plot.pdf, id=96, 505.89pt x 505.89pt>
-File: PS03_reg2plot.pdf Graphic file (type pdf)
-<use PS03_reg2plot.pdf>
-Package pdftex.def Info: PS03_reg2plot.pdf  used on input line 205.
-(pdftex.def)             Requested size: 281.85587pt x 281.86067pt.
- (EB_PS03.R) [5 <./PS03_reg2plot.pdf>] (EB_PS03.R) (EB_PS03.R
-[6])
-<PS03_reg3plot.pdf, id=143, 505.89pt x 505.89pt>
-File: PS03_reg3plot.pdf Graphic file (type pdf)
-<use PS03_reg3plot.pdf>
-Package pdftex.def Info: PS03_reg3plot.pdf  used on input line 266.
-(pdftex.def)             Requested size: 281.85587pt x 281.86067pt.
- [7 <./PS03_reg3plot.pdf>] (EB_PS03.R) (EB_PS03.R [8])
-<PS03_reg4plot.pdf, id=186, 505.89pt x 505.89pt>
-File: PS03_reg4plot.pdf Graphic file (type pdf)
-<use PS03_reg4plot.pdf>
-Package pdftex.def Info: PS03_reg4plot.pdf  used on input line 322.
-(pdftex.def)             Requested size: 281.85587pt x 281.86067pt.
- [9 <./PS03_reg4plot.pdf>] (EB_PS03.R) [10]
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+{C:/Users/ellen/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (PS04_EB.R) 
+[2] (PS04_EB.R)
+<PS04_reg1plot.pdf, id=45, 505.89pt x 505.89pt>
+File: PS04_reg1plot.pdf Graphic file (type pdf)
+<use PS04_reg1plot.pdf>
+Package pdftex.def Info: PS04_reg1plot.pdf  used on input line 149.
+(pdftex.def)             Requested size: 328.82707pt x 328.8323pt.
+ [3 <./PS04_reg1plot.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
-[11] (EB_PS03.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 235--237
+
+ []
+
+[6] (PS04_EB.R) [7] (PS04_EB.R)
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
+
+ []
+
+
+Overfull \hbox (2.82687pt too wide) in paragraph at lines 315--316
+[]\OT1/cmr/m/n/12 McAuliff's op-po-nent Ken Cuc-cinelli re-cieved 30.2% of the 
+vote in con-trol group precincts
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 319--320
+
+ []
+
+(PS04_EB.R) [9] (PS04_EB.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `EB_PS03.out' has not changed.
+Package rerunfilecheck Info: File `PS04_EB.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27419 strings out of 474486
- 482604 string characters out of 5743755
- 2103542 words of memory out of 5000000
- 49062 multiletter control sequences out of 15000+600000
- 568855 words of font info for 81 fonts, out of 8000000 for 9000
+ 27353 strings out of 474486
+ 481054 string characters out of 5743755
+ 2132542 words of memory out of 5000000
+ 49066 multiletter control sequences out of 15000+600000
+ 571166 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,3241b,2149s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,93p,3241b,1897s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ellen\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
-1000.pk> <C:\Users\ellen\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\tcrm1200.pk><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+1200.pk> <C:\Users\ellen\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm1000.pk><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmbx12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmmi10.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ellen/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ellen/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ellen/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/elle
-n/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Use
-rs/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-<C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmti12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmtt12.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on EB_PS03.pdf (11 pages, 928626 bytes).
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/ellen/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ellen/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/elle
+n/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Us
+ers/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb
+><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr7.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmsy8.pfb><C:/Users/ellen/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/ellen/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ellen/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/ellen/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on PS04_EB.pdf (9 pages, 234177 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 135 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 222 PDF objects out of 1000 (max. 8388607)
+ 71 named destinations out of 1000 (max. 500000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,7 +1,7 @@
 ###############################################################################
 # Title:        Stats I - Week 11
 # Description:  Multiple regression - Interactions
-# Author:       Elena Karagianni
+# Author:       Ellen Beattie
 # R version:    R 4.5.2
 ###############################################################################                 
 
@@ -42,7 +42,7 @@ getwd()
 # What is the relationship between education and Euroscepticism?
 
 # Load data
-df <- read.csv("ess_euroscepticism.csv", row.names="X")
+df <- read.csv("/Users/ellen/Statistical Analysis/Tutorial/ess_euroscepticism.csv")
 View(df)
 
 # Convert into factor variable
@@ -171,7 +171,7 @@ ggplot(df_na, aes(imwbcnt, euftf_re, group = edu_cat)) +
 df_na$gndr <- ifelse(df_na$gndr == 2, 1, 0)
 
 # And convert into factor
-df_na$gndr <- factor(df_na$gndr, labels = c("Male", "Female"))
+df_na$gndr <- factor(df_na$gndr, labels = c("Male", "Female")) # makes it 0 and 1
 
 # Fit model
 model_int <- lm(euftf_re~eduyrs + 
@@ -180,10 +180,10 @@ model_int <- lm(euftf_re~eduyrs +
                          imwbcnt*gndr, data=df_na)
 summary(model_int)
 
-# What is the prediction equation?
-# How to interpret the intercept?
-# How to interpret the coefficient for education?
-# How to interpret the coefficient for attitudes towards immigration?
+# What is the prediction equation? 
+# How to interpret the intercept? # everything 0 therefore male no education anti-imigrant euroskeptisim is 7.144
+# How to interpret the coefficient for education? #a one unit increase in education is assocaigted with a 0.0089 increase in eurosceptisism
+# How to interpret the coefficient for attitudes towards immigration? 
 # How to interpret the coefficient for gender?
 # How to interpret the interaction term?
 
@@ -192,7 +192,7 @@ summary(model_int)$coefficients[3]
 summary(model_int)$coefficients[3]+summary(model_int)$coefficients[5]
 
 # Or use emmeans package
-emtrends(model_int, ~ gndr, var="imwbcnt")
+emtrends(model_int, ~ gndr, var="imwbcnt") #makes it easier to see impact of each
 
 # Visualize estimated marginal means (EMMs)
 emmip(model_int, 
@@ -209,8 +209,8 @@ emmip(model_int,
       CIs = TRUE)
 
 # We can also use predict
-predict(model_int, 
-        newdata=data.frame(imwbcnt=0,gndr="Male",eduyrs=mean(df_na$eduyrs)))
+predict(model_int, #predict outcome for specific individuals, specify mode
+        newdata=data.frame(imwbcnt=0,gndr="Male",eduyrs=mean(df_na$eduyrs))) #specify values yu want it to take
 
 # Prediction equation from model with interaction term
 #  7.144123+0.008914*Education-0.467063*Attitudes-1.111747*Gender+0.169874*Attitudes*Gender
@@ -219,7 +219,9 @@ predict(model_int,
 # towards immigration, and mean education level.
 
 # What is the marginal effect of changing gender from male to female, in this scenario? 
-
+predict(model_int, #predict outcome for specific individuals, specify mode
+        newdata=data.frame(imwbcnt=0,gndr="Female",eduyrs=mean(df_na$eduyrs)))
+7.281453 - 6.109706
 # B. Add interaction term between, education and whether the person was born in country
 # (categorical x categorical)
 
@@ -234,7 +236,7 @@ model_int2 <- lm(euftf_re~edu_cat +
                           imwbcnt + 
                           brncntr +
                           edu_cat*brncntr, data=df_na)
-summary(model_int2)
+summary(model_int2) # all from reference category
 
 # Visualize estimated marginal means (EMMs)
 emmip(model_int2, 
@@ -266,7 +268,7 @@ anova(model_no_int, model_int2)
 
 # Interflex package
 # Let's use some built-in data (from the library 'interflex')
-# data(interflex)
+data(interflex)
 # s1.binning <- interflex(estimator = "binning",
 #                         Y = "Y", D = "D", X = "X", data = s1)
 # s1.linear <- interflex(estimator = "linear",
