@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  27 NOV 2025 10:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.25)  27 NOV 2025 12:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1022,7 +1022,7 @@ Package rerunfilecheck Info: File `PS04_EB.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  27353 strings out of 474486
- 481054 string characters out of 5743755
+ 481013 string characters out of 5743755
  2132542 words of memory out of 5000000
  49066 multiletter control sequences out of 15000+600000
  571166 words of font info for 90 fonts, out of 8000000 for 9000
@@ -1048,7 +1048,7 @@ onts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/ellen/AppData/Local/Programs
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ellen/AppData/Local
 /Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Users/ellen/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on PS04_EB.pdf (9 pages, 234177 bytes).
+Output written on PS04_EB.pdf (9 pages, 234460 bytes).
 PDF statistics:
  222 PDF objects out of 1000 (max. 8388607)
  71 named destinations out of 1000 (max. 500000)
